@@ -123,4 +123,11 @@ with tabs[0]:
 
 with tabs[1]:
     st.write("The AI Agent will automatically navigate your tables to solve business queries.")
-    st.text_input("Ask a question about this database:", placeholder="e.g., Which orders are currently flagged as high risk?")
+    user_query = st.text_input("Ask a question about this database:", placeholder="e.g., Which orders are currently flagged as high risk?")
+    if user_query:
+        # 1. Initialize the AI
+        # 2. AI lists tables and column names
+        # 4. AI decides which table and column and what keyword for searching
+        # 5. Code runs search_records(...) and gives masked result to AI
+        # 6. AI displays the final helpful answer
+        st.write("🤖 **Agent is thinking...**")
