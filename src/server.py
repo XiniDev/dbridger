@@ -5,7 +5,7 @@ from fastmcp import FastMCP
 from src.security import mask_pii
 
 load_dotenv()
-mcp = FastMCP("DeadConn")
+mcp = FastMCP("DBridger")
 
 def get_db_connection():
     """

@@ -1,6 +1,6 @@
-# 🛡️ DeadConn
+# 🛡️ DBridger
 
-**The Secure Legacy-to-AI Gateway.** DeadConn bridges the gap between old-world databases and modern AI Agents (Claude, ChatGPT, etc.) using the Model Context Protocol (MCP).
+**The Secure Legacy-to-AI Gateway.** DBridger bridges the gap between old-world databases and modern AI Agents (Claude, ChatGPT, etc.) using the Model Context Protocol (MCP).
 
 ## 🚀 Features
 
@@ -53,12 +53,12 @@ npm run inspect
 
 ---
 
-## 🛡️ How DeadConn protects your data
+## 🛡️ How DBridger protects your data
 
-Unlike standard SQL wrappers, DeadConn keeps your data safe by treating external AIs as untrusted entities.
+Unlike standard SQL wrappers, DBridger keeps your data safe by treating external AIs as untrusted entities.
 
 1. The AI asks for data.
-2. DeadConn **validates** the table/column exists.
-3. DeadConn **fetches** the data.
-4. DeadConn **scrubs** the data for PII.
+2. DBridger **validates** the table/column exists.
+3. DBridger **fetches** the data.
+4. DBridger **scrubs** the data for PII.
 5. The AI receives only what it needs to see.
