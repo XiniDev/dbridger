@@ -1,12 +1,22 @@
 import sqlite3
 import os
+from dotenv import load_dotenv
 from fastmcp import FastMCP
 from src.security import mask_pii
 
+load_dotenv()
 mcp = FastMCP("DeadConn")
 
 def get_db_connection():
-    db_path = os.path.join(os.path.dirname(__file__), "..", "data", "company_vault.db")
+    """
+    Retrieves the database path from the environment variable.
+    Defaults to a local path if not found.
+    """
+    db_path = os.getenv("DB_PATH", "data/example.db")
+
+    if not os.path.exists(db_path):
+        raise FileNotFoundError(f"Database not found at: {db_path}")
+
     return sqlite3.connect(db_path)
 
 def is_valid_table(table_name: str) -> bool:

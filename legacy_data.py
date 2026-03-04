@@ -3,7 +3,7 @@ import os
 
 def setup_database():
     os.makedirs("data", exist_ok=True)
-    db_path = "data/company_vault.db"
+    db_path = "data/example.db"
     
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
