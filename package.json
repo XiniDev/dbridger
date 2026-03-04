@@ -1,0 +1,20 @@
+{
+  "name": "deadconn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "setup": "python legacy_data.py",
+    "inspect": "npx -p @modelcontextprotocol/inspector mcp-inspector python -m src.server",
+    "start": "python -m src.server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.21.1"
+  }
+}
