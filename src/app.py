@@ -45,6 +45,7 @@ APP_STYLE = """
     QTreeWidget::item:selected { background-color: #37373D; }
 """
 
+
 class SidebarWidget(QWidget):
     """Handles Database Connection and Schema Exploration."""
     db_connected = pyqtSignal(str)
@@ -213,6 +214,7 @@ class DBridgerApp(QMainWindow):
         """Triggered when the Sidebar successfully loads a database."""
         self.active_db_path = file_path
         self.tabs.setEnabled(True)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
