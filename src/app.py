@@ -134,7 +134,7 @@ class DBridgerApp(QMainWindow):
 
         self.inp_query = QLineEdit()
         self.inp_query.setPlaceholderText("Ask a question (e.g., Which orders are flagged as high risk?)")
-        self.inp_query.returnPressed.connect(self.run_ai_agent) # Press Enter to send
+        self.inp_query.returnPressed.connect(self.run_ai_agent)
         
         self.btn_ask = QPushButton("🧠 Ask Agent")
         self.btn_ask.clicked.connect(self.run_ai_agent)
