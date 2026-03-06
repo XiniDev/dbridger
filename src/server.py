@@ -50,6 +50,7 @@ def search_records(table_name: str, search_column: str, search_value: str) -> st
     Safely retrieves records with dual-layer validation (Table + Column).
     Automatically maps column names to values and applies PII masking.
     """
+    print(f"👀 AI is searching TABLE: '{table_name}' for '{search_value}'...") # printing this for debugging purposes
     if not is_valid_table(table_name):
         return f"Error: Access Denied. '{table_name}' is not a recognized or authorized table."
 

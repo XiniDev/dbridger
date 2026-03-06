@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import (
     QPushButton, QLabel, QFileDialog, QTabWidget, QLineEdit, 
     QTextEdit, QTreeWidget, QTreeWidgetItem, QMessageBox, QSplitter
 )
-from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtCore import Qt, pyqtSignal, QThread
 from PyQt6.QtGui import QFont
 
 from src.server import search_records, list_tables, list_columns
@@ -149,6 +149,19 @@ class ManualSearchWidget(QWidget):
         self.txt_results.append(f"{results}\n{'-'*40}")
 
 
+class AgentWorker(QThread):
+    finished = pyqtSignal(str)
+
+    def __init__(self, agent, query):
+        super().__init__()
+        self.agent = agent
+        self.query = query
+
+    def run(self):
+        answer = self.agent.ask_question(self.query)
+        self.finished.emit(answer)
+
+
 class AIAgentWidget(QWidget):
     """Handles the conversational AI Agent interface."""
     def __init__(self):
@@ -191,15 +204,23 @@ class AIAgentWidget(QWidget):
 
         self.txt_agent_output.append(f"👤 You: {query}")
         self.inp_query.clear()
-
         self.txt_agent_output.append("🤖 Agent: Thinking... (Running tools locally)\n")
-        QApplication.processEvents() 
+        self.btn_ask.setEnabled(False)
+        self.inp_query.setEnabled(False)
 
-        agent = DBridgerAgent(api_key)
+        self.agent_instance = DBridgerAgent(api_key)
 
-        answer = agent.ask_question(query)
+        self.worker = AgentWorker(self.agent_instance, query)
+        self.worker.finished.connect(self.on_agent_finished)
+        self.worker.start()
 
+    def on_agent_finished(self, answer):
+        """This runs when the background thread is done."""
         self.txt_agent_output.append(f"🤖 DBridger:\n{answer}\n{'-'*40}")
+
+        self.btn_ask.setEnabled(True)
+        self.inp_query.setEnabled(True)
+
 
 class DBridgerApp(QMainWindow):
     """The main window that coordinates all sub-components."""
